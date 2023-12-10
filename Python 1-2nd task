@@ -1,0 +1,20 @@
+Python 1-2nd task
+
+import pandas as pd
+import pandas as pd
+import numpy as np
+data = pd.read_csv("F.csv")
+df = pd.DataFrame(data)
+def get_type_count(df):
+    df['car_type'] = pd.cut(df['car'], bins=[float('-inf'), 15, 25, float('inf')],
+                            labels=['low', 'medium', 'high'], right=False)
+
+    type_count = df['car_type'].value_counts().to_dict()
+
+    type_count = dict(sorted(type_count.items()))
+
+    return type_count
+df = pd.read_csv('F.csv')
+result_type_count = get_type_count(df)
+
+print(result_type_count)
