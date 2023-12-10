@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-data = pd.read_csv("F.csv")
+data = pd.read_csv("dataset-1.csv")
 df = pd.DataFrame(data)
 def get_bus_indexes(df):
     bus_mean = df['bus'].mean()
@@ -8,7 +8,7 @@ def get_bus_indexes(df):
     bus_indexes.sort()
     return bus_indexes
 
-df = pd.read_csv('F.csv')
+df = pd.read_csv('dataset-1.csv')
 result_bus_indexes = get_bus_indexes(df)
 
 print(result_bus_indexes)
