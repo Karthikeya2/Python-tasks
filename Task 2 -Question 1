@@ -1,0 +1,29 @@
+Task 2 -Question 1
+import pandas as pd
+
+def calculate_distance_matrix(dataset_3_path):
+
+    dataset_3_df = pd.read_csv(dataset_3_path)
+
+    unique_ids = dataset_3_df.columns
+
+    distance_matrix = pd.DataFrame(index=unique_ids, columns=unique_ids)
+    distance_matrix = distance_matrix.fillna(0)
+
+    
+    for _, row in dataset_3_df.iterrows():
+        for i in range(len(unique_ids)):
+            for j in range(i + 1, len(unique_ids)):
+                start_id, end_id = unique_ids[i], unique_ids[j]
+
+               
+                if pd.notna(row[start_id]) and pd.notna(row[end_id]):
+                    # Update distance_matrix with bidirectional distances
+                    distance_matrix.at[start_id, end_id] += row[end_id]
+                    distance_matrix.at[end_id, start_id] += row[end_id]
+
+    return distance_matrix
+
+distance_matrix = calculate_distance_matrix('dataset-3.csv')
+print(distance_matrix)
+
