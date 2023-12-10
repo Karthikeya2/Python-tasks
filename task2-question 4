@@ -1,0 +1,14 @@
+import pandas as pd
+
+def calculate_toll_rate(distances_df):
+    
+    distances_df['moto'] = distances_df['distance'] * 0.8
+    distances_df['car'] = distances_df['distance'] * 1.2
+    distances_df['rv'] = distances_df['distance'] * 1.5
+    distances_df['bus'] = distances_df['distance'] * 2.2
+    distances_df['truck'] = distances_df['distance'] * 3.6
+
+    return distances_df
+
+result_with_toll_rates = calculate_toll_rate(unrolled_distances)
+print(result_with_toll_rates)
