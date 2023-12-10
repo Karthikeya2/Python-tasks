@@ -1,0 +1,44 @@
+import pandas as pd
+import numpy as np
+import os
+print(os.getcwd())
+df_dataset_2 = pd.read_csv(dataset-2)
+import datetime
+
+
+def calculate_time_based_toll_rates(df):
+   
+    df['timestamp'] = pd.to_datetime(df['timestamp'])
+
+   
+    df['day'] = df['timestamp'].dt.day_name()
+    df['hour'] = df['timestamp'].dt.hour
+    df['minute'] = df['timestamp'].dt.minute
+
+  
+    def calculate_discount_factor(row):
+        if row['day'] in ['Saturday', 'Sunday']:
+            return 0.7  
+        elif 0 <= row['hour'] < 10 or 18 <= row['hour'] <= 23:
+            return 0.8  
+        elif 10 <= row['hour'] < 18:
+            return 1.2 
+        else:
+            return 1.0  
+
+   
+    df['discount_factor'] = df.apply(calculate_discount_factor, axis=1)
+
+  
+    vehicle_types = ['moto', 'car', 'rv', 'bus', 'truck']
+    for vehicle_type in vehicle_types:
+        df[vehicle_type + '_rate'] = df[vehicle_type] * df['discount_factor']
+
+    
+    df = df.drop(['day', 'hour', 'minute', 'discount_factor'], axis=1)
+
+    return df
+
+
+result_with_time_based_toll_rates = calculate_time_based_toll_rates(df_dataset_2)
+print(result_with_time_based_toll_rates.head())
