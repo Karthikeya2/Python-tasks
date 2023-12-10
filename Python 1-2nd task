@@ -1,6 +1,4 @@
 Python 1-2nd task
-
-import pandas as pd
 import pandas as pd
 import numpy as np
 data = pd.read_csv("F.csv")
