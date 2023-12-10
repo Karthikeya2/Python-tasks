@@ -1,0 +1,20 @@
+import pandas as pd
+
+def filter_routes(df):
+
+    route_avg_truck = df.groupby('route')['truck'].mean()
+
+   
+    filtered_routes = route_avg_truck[route_avg_truck > 7].index.tolist()
+
+   
+    filtered_routes.sort()
+
+    return filtered_routes
+
+
+df = pd.read_csv('dataset-1.csv')
+result_filtered_routes = filter_routes(df)
+
+
+print(result_filtered_routes)
