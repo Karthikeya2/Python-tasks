@@ -4,7 +4,7 @@ import pandas as pd
 
 import numpy as np
 
-data = pd.read_csv("F.csv")
+data = pd.read_csv("dataset-1.csv")
 
 df = pd.DataFrame(data)
 
@@ -18,7 +18,7 @@ def generate_car_matrix(df):
     result_matrix = pd.DataFrame(matrix, index=df['id_1'].unique(), columns=df['id_2'].unique())
 
     return result_matrix
-df = pd.read_csv('F.csv')
+df = pd.read_csv('dataset-1.csv')
 result_matrix = generate_car_matrix(df)
 
 print(result_matrix)
