@@ -1,0 +1,25 @@
+import pandas as pd
+
+def find_ids_within_ten_percentage_threshold(unrolled_distances, reference_value):
+    
+    reference_rows = unrolled_distances[unrolled_distances['id_start'] == reference_value]
+
+    print("Reference Rows:")
+    print(reference_rows)
+
+    avg_distance = reference_rows['distance'].mean()
+
+    lower_bound = avg_distance - (avg_distance * 0.1)
+    upper_bound = avg_distance + (avg_distance * 0.1)
+
+    within_threshold = reference_rows[(reference_rows['distance'] >= lower_bound) & (reference_rows['distance'] <= upper_bound)]
+
+    result_ids = within_threshold['id_start'].unique() 
+    result_ids.sort()
+    return result_ids
+
+reference_value = 801 
+result_ids = find_ids_within_ten_percentage_threshold(unrolled_distances, reference_value)
+
+
+print(result_ids)
