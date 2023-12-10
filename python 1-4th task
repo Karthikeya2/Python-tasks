@@ -1,4 +1,8 @@
 import pandas as pd
+import numpy as np
+data = pd.read_csv("dataset-1.csv")
+df = pd.DataFrame(data)
+import pandas as pd
 
 def filter_routes(df):
 
@@ -17,4 +21,4 @@ df = pd.read_csv('dataset-1.csv')
 result_filtered_routes = filter_routes(df)
 
 
-print(result_filtered_routes)
+print(result_filtered_routes)\
