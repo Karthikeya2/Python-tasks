@@ -1,0 +1,31 @@
+import pandas as pd
+
+def unroll_distance_matrix(distance_matrix):
+    # Initialize an empty DataFrame to store unrolled distances
+    unrolled_distances = pd.DataFrame(columns=['id_start', 'id_end', 'distance'])
+
+    # Iterate over rows and columns of the distance_matrix
+    for start_id in distance_matrix.index:
+        for end_id in distance_matrix.columns:
+            # Skip diagonal elements (same id_start and id_end)
+            if start_id == end_id:
+                continue
+
+            # Extract distance value
+            distance = distance_matrix.at[start_id, end_id]
+
+            # Append to the unrolled_distances DataFrame
+            unrolled_distances = unrolled_distances.append({
+                'id_start': start_id,
+                'id_end': end_id,
+                'distance': distance
+            }, ignore_index=True)
+
+    return unrolled_distances
+
+# Example usage with the distance_matrix obtained from Question 1
+distance_matrix = calculate_distance_matrix('dataset-3.csv')
+unrolled_distances = unroll_distance_matrix(distance_matrix)
+
+# Display the resulting DataFrame
+print(unrolled_distances)
