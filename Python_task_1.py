@@ -17,6 +17,7 @@ print(result_matrix)
 
 
 """Question 2: Car Type Count Calculation
+
 Python 1-2nd task
 import pandas as pd
 import numpy as np
@@ -34,6 +35,7 @@ result_type_count = get_type_count(df)
 print(result_type_count)
 
 """Question 3: Bus Count Index Retrieval
+
 import pandas as pd
 import numpy as np
 data = pd.read_csv("dataset-1.csv")
